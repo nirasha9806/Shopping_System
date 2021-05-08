@@ -3,11 +3,16 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const path = require("path");
+const paymentRoute=require('./api/routes/payment-route');
 
 app.use(cors());
 
 //BodyParser Middleware
 app.use(bodyParser.json());
+
+// sanduni payment
+app.use('/api/payment',paymentRoute);
 
 
 //DB config
