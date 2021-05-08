@@ -21,5 +21,10 @@ mongoose
     
     const port  = process.env.PORT || 5000;
 
+    //'/api/product' location
+//app.use('/api/products', require('./api/routes/products'));
+
+app.use('/api/Cart', require('./api/routes/Cart'));
+
 
     app.listen(port, () => console.log('Server started on port ' +port));
