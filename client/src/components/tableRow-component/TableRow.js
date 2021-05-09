@@ -15,6 +15,8 @@ export default class TableRow extends Component{
     }
   render() {
         return (
+
+            
             <tr>
                 <td>
                     {this.props.obj.itemname}
@@ -38,6 +40,7 @@ export default class TableRow extends Component{
                 <button onClick={() => this.delete(this.props.obj._id)} className="btn btn-primary">Delete</button>
                 </td>
             </tr>
+            
         );
     }
 }

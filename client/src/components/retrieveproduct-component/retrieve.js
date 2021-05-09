@@ -33,9 +33,10 @@ export default class Index extends Component{
    
     render(){
         return (
-        <div>
+            <div class="container">
             <h3 align="center"> Details of the Products</h3>
-            <table className="table table-striped" style={{marginTop:20}}>
+            <br></br>
+            <table className="table table-striped" style={{marginTop:30}}>
                 <thead>
                     <tr>
                         <th>Item Name</th>
@@ -43,6 +44,7 @@ export default class Index extends Component{
                         <th>Discount</th>
                         <th>Category</th>
                         <th>Discription</th>
+                        <th>Action</th>
                         
                         
                     </tr>

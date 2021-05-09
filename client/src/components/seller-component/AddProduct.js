@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+
 
 export default function Insert(){
 
@@ -54,19 +59,30 @@ export default function Insert(){
 
         return(
 
-            <div style={{marginTop:10}}>
+
+            <center> 
+
+            
+           <div class="form-group w-25">
+
+
 
                 <h3><center>Add Products</center></h3>
-                <form>
-                    <div className = "form-group">
-                        <label>Item Name:</label>
-                        <input name="item" type ="text" className="form-control" value={itemname} onChange={(e)=>onChangeitemname(e)} />
-                    </div>
 
-                    <div className = "form-group">
-                        <label>Price:</label>
+<br></br>
+                
+             <form >
+               
+                        <label><span>Item Name:</span></label>
+                        
+                        <input name="item" type ="text" className="form-control" placeholder="123-45-678" value={itemname} onChange={(e)=>onChangeitemname(e)} />
+                   
+                       
+                   
+                        <label><span>Price:</span></label>
+                        
                         <input name="price" type = "text" className="form-control" value={price} onChange={(e)=>onChangeprice(e)} />
-                    </div>
+                   
                     <div className = "form-group">
                         <label>Discount:</label>
                         <input name="discount" type = "text" className="form-control" value={discount} onChange={(e)=>onChangediscount(e)} />
@@ -83,14 +99,14 @@ export default function Insert(){
                     </div>
                     <div className = "form-group">
                         
-                        <button className="btn btn-primary" onClick={()=>onSubmit()}>Add Product </button>&nbsp;&nbsp;
-                        <Link to={"/retrieve"} className="btn btn-primary">Edit & Update</Link>
+                    <span> </span>      <button className="btn btn-primary" onClick={()=>onSubmit()}>Add Product </button>&nbsp;&nbsp;
+                        <Link to={"/retrieve"} className="btn btn-primary">View Details</Link>
                     </div>
                 </form>
 
-
+                  
             </div>
             
-            
+           </center>
         )
     }

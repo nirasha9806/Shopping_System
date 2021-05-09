@@ -82,8 +82,12 @@ onsubmit(e){
 
 render(){
     return(
-        <div style={{marginTop:10}}>
-      <center>    <h3>Edit Product details </h3></center> 
+
+        <center>
+        <div class="form-group w-25">
+          <h3>Edit Product details </h3>
+
+          <br></br>
         <form onSubmit={this.onsubmit}>
                  <div className="form-group">
                      <label>Add Item Name : </label>
@@ -127,7 +131,11 @@ render(){
                      <input type="submit" value="Edit Details" className="btn btn-primary"/>
                  </div>
              </form>
-         </div>
+
+             
+             </div>
+             </center>
+         
     )
 }
 }
