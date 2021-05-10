@@ -25,10 +25,14 @@ const cartSchema = mongoose.Schema({
     quantity:{
       type:String
     },
+<<<<<<< Updated upstream
 
     cusId:{
       type: String
   }
+=======
+    
+>>>>>>> Stashed changes
 
 },{ timesamps: true})
 

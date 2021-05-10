@@ -9,7 +9,11 @@ const { deleteModel } = require('mongoose');
 
 
 //get method to fetch data from products
+<<<<<<< Updated upstream
 router.get('/displayProduct/', function(req,res){
+=======
+router.get('/displayProduct', function(req,res){
+>>>>>>> Stashed changes
   Product.find({})
   .exec(function(err, products){
       if(err) {
@@ -33,7 +37,11 @@ router.get('/display/:id', function(req,res){
 });
 
 //post method to save data in cart
+<<<<<<< Updated upstream
 router.post("/insertCart/:uid", (req, res) => {
+=======
+router.post("/insertCart", (req, res) => {
+>>>>>>> Stashed changes
 
   //save data got from the client into the carts collection in the DB
   const cart = new Cart(req.body)
@@ -46,9 +54,15 @@ router.post("/insertCart/:uid", (req, res) => {
 
 
 //get method to fetch data from cart
+<<<<<<< Updated upstream
 router.get('/:uid', function(req,res){
   console.log('get requests for all cart');
   Cart.find({cusId: req.params.uid})
+=======
+router.get('/', function(req,res){
+  console.log('get requests for all cart');
+  Cart.find()
+>>>>>>> Stashed changes
   .exec(function(err, carts){
       if(err) {
           console.log('error')
@@ -97,7 +111,11 @@ router.get('/edit/:id', function (req, res) {
 
 
   //get method to search
+<<<<<<< Updated upstream
 router.get('/', function(req,res){
+=======
+router.get('/getProducts', function(req,res){
+>>>>>>> Stashed changes
   console.log('get requests for all products');
   Product.find({})
   .exec(function(err, products){
