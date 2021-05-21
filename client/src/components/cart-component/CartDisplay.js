@@ -39,7 +39,7 @@ function Cart(){
               <div>
                 <br/>
 
-                <h3 className = 'header2'>
+                <h3 className = 'header3'>
                     <center>
                         <b>CHECKOUT !</b>
                     </center>
