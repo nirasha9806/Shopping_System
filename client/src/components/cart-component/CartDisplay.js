@@ -24,6 +24,14 @@ function Cart(){
         });
       }
 
+      //delete table
+      const deleteTable = () => {
+        axios.post('http://localhost:5000/api/Cart/deleteTable')
+        .then(response =>{
+          window.location.href='/delivery'
+        });
+      }
+
       //calculate product total
       const calculateTot=()=>{
         let total=0;
@@ -82,7 +90,7 @@ function Cart(){
               </table>
              
               <button type="button" value="Add Delivery Details" className="btn btn-dark" 
-                 onClick={event =>  window.location.href='/deliveryInsert/:id'}
+                 onClick={() => deleteTable()}
                  style ={{marginLeft:"873px"}}>
                  Add Delivery Details              
               </button>

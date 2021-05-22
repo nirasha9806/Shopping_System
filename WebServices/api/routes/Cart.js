@@ -82,6 +82,16 @@ router.post('/delete/:id',function (req,res){
   });
 });
 
+//delete table from database
+router.post('/deleteTable',function (req,res){
+  Cart.deleteMany({}, function(error, result){
+    if(error)
+      res.json(error);
+    else
+      res.json("success");
+  })
+});
+
 // Defined edit route
 router.get('/edit/:id', function (req, res) {
   let id = req.params.id;
