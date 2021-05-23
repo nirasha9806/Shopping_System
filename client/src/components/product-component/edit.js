@@ -23,7 +23,12 @@ export default class Edit extends Component {
   componentDidMount() {
     axios
       .get(
-        'http://localhost:5000/api/sellers/edit/' + this.props.match.params.id
+        'http://localhost:5000/api/sellers/edit/' + this.props.match.params.id,
+        {
+          headers: {
+            Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+          },
+        }
       )
       .then((response) => {
         this.setState({
@@ -66,22 +71,29 @@ export default class Edit extends Component {
   }
   onsubmit(e) {
     e.preventDefault();
+    let uid = window.sessionStorage.getItem('me');
     const obj = {
       itemname: this.state.itemname,
       price: this.state.price,
       discount: this.state.discount,
       category: this.state.category,
       description: this.state.description,
+      uId: uid,
     };
     axios
       .post(
         'http://localhost:5000/api/sellers/update/' +
           this.props.match.params.id,
-        obj
+        obj,
+        {
+          headers: {
+            Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+          },
+        }
       )
       .then((res) => console.log(res.data));
 
-    this.props.history.push('/index');
+    window.location = '/displayProduct';
   }
 
   render() {

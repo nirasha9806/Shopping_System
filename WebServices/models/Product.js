@@ -25,6 +25,10 @@ const productSchema = mongoose.Schema(
     image: {
       type: String,
     },
+
+    uId: {
+      type: String
+    }
   },
   { timesamps: true }
 );

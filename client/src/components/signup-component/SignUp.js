@@ -48,7 +48,11 @@ export default function SignUp() {
   };
 
   return (
-    <div> <br/><br/><br/>
+    <div>
+      {' '}
+      <br />
+      <br />
+      <br />
       <Grid>
         <Paper
           elevation={10}

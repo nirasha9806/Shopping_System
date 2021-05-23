@@ -12,6 +12,7 @@ export default function Addpayment() {
   const [amount, setAmount] = useState('');
 
   const handleSubmit = () => {
+    let uid = window.sessionStorage.getItem('me');
     const Payment = {
       name: name,
       email: email,
@@ -19,10 +20,15 @@ export default function Addpayment() {
       date: date,
       code: code,
       amount: amount,
+      uId: uid,
     };
 
     axios
-      .post('http://localhost:5000/api/payment/insertPayment', Payment)
+      .post('http://localhost:5000/api/payment/insertPayment', Payment, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         alert(response.data.message);

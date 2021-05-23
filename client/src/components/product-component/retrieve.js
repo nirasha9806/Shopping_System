@@ -9,8 +9,13 @@ export default class Index extends Component {
     this.state = { product: [] };
   }
   componentDidMount() {
+    let uid = window.sessionStorage.getItem('me');
     axios
-      .get('http://localhost:5000/api/sellers')
+      .get('http://localhost:5000/api/sellers/' + uid, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         this.setState({ product: response.data });
       })

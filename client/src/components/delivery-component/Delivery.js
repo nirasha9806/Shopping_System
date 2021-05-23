@@ -12,6 +12,7 @@ export default function AddDeliveryDetails() {
   const [address, setAddress] = useState('');
 
   const handleSubmit = () => {
+    let uid = window.sessionStorage.getItem('me');
     const Delivery = {
       name: name,
       email: email,
@@ -19,10 +20,15 @@ export default function AddDeliveryDetails() {
       city: city,
       zipcode: zipcode,
       address: address,
+      uId: uid,
     };
 
     axios
-      .post('http://localhost:5000/api/delivery/insertDelivery', Delivery)
+      .post('http://localhost:5000/api/delivery/insertDelivery', Delivery, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           window.location = '/payment';

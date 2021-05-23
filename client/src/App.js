@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/signup-component/SignUp';
 import LogIn from './components/login-component/Login';
 import Addpayment from './components/payment-component/Addpayment';
-import HomePage from './components/home-component/HomePage';
 import Cart from './components/cart-component/CartDisplay';
 import UpdateCartDisplay from './components/cart-component/UpdateCartDIsplay';
 import DetailsCart from './components/cart-component/Pdetails';
@@ -15,8 +14,7 @@ import Edit from './components/product-component/edit';
 function App() {
   return (
     <Router>
-      <Route path='/home' component={HomePage} />
-      <Route path='/login' component={LogIn} />
+      <Route exact path='/' component={LogIn} />
       <Route path='/signup' component={SignUp} />
       <Route path='/payment' component={Addpayment} />
       <Route path='/delivery' component={AddDeliveryDetails} />

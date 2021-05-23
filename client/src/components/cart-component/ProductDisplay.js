@@ -8,10 +8,16 @@ function Products() {
 
   //retrieve data
   useEffect(() => {
-    axios.get('http://localhost:5000/api/Cart/displayProduct').then((res) => {
-      const products = res.data;
-      setProductList(products);
-    });
+    axios
+      .get('http://localhost:5000/api/Cart/displayProduct', {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        const products = res.data;
+        setProductList(products);
+      });
   }, []);
 
   //search part
@@ -27,11 +33,17 @@ function Products() {
   const handleSearch = (e) => {
     var searchProduct = e.target.value;
 
-    axios.get('http://localhost:5000/api/Cart/displayProduct').then((res) => {
-      const products = res.data;
-      setProductList(products);
-      filterContent(products, searchProduct);
-    });
+    axios
+      .get('http://localhost:5000/api/Cart/displayProduct', {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        const products = res.data;
+        setProductList(products);
+        filterContent(products, searchProduct);
+      });
   };
 
   return (

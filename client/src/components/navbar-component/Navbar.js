@@ -29,26 +29,17 @@ function Navbar() {
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item active'>
-            <Link
-              className='nav-link text-white ml-5'
-              to='/addProduct'
-            >
+            <Link className='nav-link text-white ml-5' to='/addProduct'>
               Add Products <span class='sr-only'>(current)</span>
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-              className='nav-link text-white ml-5'
-              to='/displayProduct'
-            >
+            <Link className='nav-link text-white ml-5' to='/displayProduct'>
               View Products
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-              className='nav-link text-white ml-5'
-              to='/orders'
-            >
+            <Link className='nav-link text-white ml-5' to='/orders'>
               View Orders
             </Link>
           </li>
@@ -58,7 +49,7 @@ function Navbar() {
           <Link
             title='logout'
             className='nav-link text-white text-uppercase ml-0'
-            to='/login'
+            to='/'
           >
             {' '}
             &nbsp; <i class='far fa-user'></i>

@@ -8,9 +8,9 @@ const paymentSchema = mongoose.Schema({
         type: String
     },
 
-    // email: {
-    //     type: String
-    // },
+    email: {
+        type: String
+    },
 
     number: {
         type: String
@@ -27,6 +27,10 @@ const paymentSchema = mongoose.Schema({
     amount: {
         type: String
     },
+
+    uId: {
+        type: String
+    }
     
 },{ timesamps: true})
 

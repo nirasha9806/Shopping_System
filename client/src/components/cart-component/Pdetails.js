@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../navbar-component/Header';
 
 function DetailsCart() {
-  const [size, setSize] = useState(' ');
   const [quantity, setQuantity] = useState(' ');
   const [product, setProduct] = useState([]);
+  const [uId, setUId] = useState('');
 
   let { id } = useParams();
 
@@ -16,31 +16,38 @@ function DetailsCart() {
 
   //Retrieve
   useEffect(() => {
-    axios.get('http://localhost:5000/api/Cart/display/' + id).then((res) => {
-      const products = res.data;
-      setProduct(products);
-    });
+    axios
+      .get('http://localhost:5000/api/Cart/display/' + id, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        const products = res.data;
+        setProduct(products);
+      });
   });
 
-  //target is textbox and value is textbox value
-  const onChangeRadio1 = (e) => {
-    console.log(e.target.value);
-    setSize(e.target.value);
-  };
-
   //insert
-  const onSubmit = (pName, price, discount, category, size, qty) => {
+  const onSubmit = (pName, price, discount, category, qty) => {
+    let uid = window.sessionStorage.getItem('me');
+    setUId(uid);
+
     const Cart = {
       itemname: pName,
       price: price,
       discount: discount,
       category: category,
-      size: size,
       quantity: qty,
+      uId: uId,
     };
 
     axios
-      .post('http://localhost:5000/api/Cart/insertCart', Cart)
+      .post('http://localhost:5000/api/Cart/insertCart', Cart, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           alert('Successfully Added');
@@ -95,55 +102,6 @@ function DetailsCart() {
               </li>
 
               <li class='list-group-item'>
-                <label>Size: </label>
-                <br></br>
-                <input
-                  type='radio'
-                  name='size'
-                  value='S'
-                  checked={size === 'S'}
-                  onChange={(e) => onChangeRadio1(e)}
-                />
-                &nbsp;<strong>S</strong>
-                &nbsp; &nbsp; &nbsp;&nbsp;
-                <input
-                  type='radio'
-                  name='size'
-                  value='M'
-                  checked={size === 'M'}
-                  onChange={(e) => onChangeRadio1(e)}
-                />
-                &nbsp; <strong>M</strong>
-                &nbsp; &nbsp; &nbsp;&nbsp;
-                <input
-                  type='radio'
-                  name='size'
-                  value='L'
-                  checked={size === 'L'}
-                  onChange={(e) => onChangeRadio1(e)}
-                />{' '}
-                &nbsp;<strong>L</strong>
-                &nbsp; &nbsp; &nbsp;&nbsp;
-                <input
-                  type='radio'
-                  name='size'
-                  value='XL'
-                  checked={size === 'XL'}
-                  onChange={(e) => onChangeRadio1(e)}
-                />{' '}
-                &nbsp;<strong>XL</strong>
-                &nbsp; &nbsp; &nbsp;&nbsp;
-                <input
-                  type='radio'
-                  name='size'
-                  value='XXL'
-                  checked={size === 'XXL'}
-                  onChange={(e) => onChangeRadio1(e)}
-                />{' '}
-                <strong>XXL</strong>
-              </li>
-
-              <li class='list-group-item'>
                 <label>
                   Quantity:{' '}
                   <input
@@ -165,7 +123,6 @@ function DetailsCart() {
                       product.price,
                       product.discount,
                       product.categoryType,
-                      size,
                       quantity
                     )
                   }

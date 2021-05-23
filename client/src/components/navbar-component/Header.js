@@ -33,17 +33,18 @@ function Navbar() {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-              className='nav-link text-white ml-5'
-              to='/cart'
-            >
+            <Link className='nav-link text-white ml-5' to='/cart'>
               Cart
             </Link>
           </li>
         </ul>
 
         <li className='list-inline-item'>
-          <Link title='logout' className='nav-link text-white text-uppercase ml-0' to='/login'>
+          <Link
+            title='logout'
+            className='nav-link text-white text-uppercase ml-0'
+            to='/'
+          >
             {' '}
             &nbsp; <i class='far fa-user'></i>
             <span class='sr-only'>(current)</span>

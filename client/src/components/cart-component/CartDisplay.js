@@ -6,16 +6,26 @@ import Navbar from '../navbar-component/Header';
 function Cart() {
   const [carts, setCarts] = useState([]);
 
+  let uid;
+
   //retrieve data
   useEffect(() => {
-    axios.get('http://localhost:5000/api/Cart').then((res) => {
-      const cart = res.data;
-      setCarts(cart);
-    });
+    uid = window.sessionStorage.getItem('me');
+    axios
+      .get('http://localhost:5000/api/Cart/' + uid, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        const cart = res.data;
+        setCarts(cart);
+      });
   }, []);
 
   //Delete Method
   const Delete = (id) => {
+    console.log(window.sessionStorage.getItem('me'));
     axios
       .post('http://localhost:5000/api/Cart/delete/' + id)
       .then((response) => {
@@ -53,7 +63,6 @@ function Cart() {
           <thead className='table-active'>
             <tr>
               <th>Product Name</th>
-              <th>Size</th>
               <th>Quantity</th>
               <th>Price</th>
               <th>Edit items</th>
@@ -64,7 +73,6 @@ function Cart() {
           {carts.map((Cart) => (
             <tr>
               <td>{Cart.itemname}</td>
-              <td>{Cart.size}</td>
               <td>{Cart.quantity}</td>
               <td>{Cart.price}</td>
               <td>

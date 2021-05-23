@@ -26,6 +26,10 @@ const deliverySchema = mongoose.Schema({
         type: String
     },
 
+    uId: {
+        type: String
+    }
+
 },{ timesamps: true})
 
 const Delivery = mongoose.model('Delivery', deliverySchema);

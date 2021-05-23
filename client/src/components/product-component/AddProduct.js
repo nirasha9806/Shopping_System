@@ -37,6 +37,7 @@ export default function Insert() {
   };
 
   const onSubmit = () => {
+    let uid = window.sessionStorage.getItem('me');
     let formdata = new FormData();
     formdata.append('itemname', itemname);
     formdata.append('price', price);
@@ -44,9 +45,16 @@ export default function Insert() {
     formdata.append('category', category);
     formdata.append('description', description);
     formdata.append('image', selectedFile, selectedFile.name);
+    formdata.append('uId', uid);
+
+    console.log(window.sessionStorage.getItem('token'));
 
     axios
-      .post('http://localhost:5000/api/sellers/add', formdata)
+      .post('http://localhost:5000/api/sellers/add', formdata, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+        },
+      })
       .then((res) => {
         alert(res.data.message);
       })

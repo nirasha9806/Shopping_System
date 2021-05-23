@@ -23,8 +23,12 @@ export default function Login() {
       console.log(response.data);
       response.data.user.forEach((item) => {
         if (item.role === 'Buyer') {
+          window.sessionStorage.setItem('token', response.data.token);
+          window.sessionStorage.setItem('me', item._id);
           window.location = '/product';
         } else {
+          window.sessionStorage.setItem('token', response.data.token);
+          window.sessionStorage.setItem('me', item._id);
           window.location = '/displayProduct';
         }
       });

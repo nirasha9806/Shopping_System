@@ -17,14 +17,14 @@ const cartSchema = mongoose.Schema({
     category:{
       type: String
     },
-
-    size:{
-      type: String
-    },
-
+    
     quantity:{
       type:String
-    },    
+    },   
+    
+    uId:{
+      type:String
+    }
 
 },{ timesamps: true})
 

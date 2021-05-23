@@ -1,16 +1,19 @@
+const { Router } = require('express');
 const express = require('express');
-const productRoutes = express.Router();
+const router = express.Router();
 const upload = require('../middleware/upload');
 const multer = require('multer');
 let { Product } = require('../../models/Product');
+const checkAuth = require('../middleware/check-auth');
 
-productRoutes.route('/add').post(upload.single('image'), (req, res) => {
+router.post('/add', upload.single('image'), checkAuth, (req, res) => {
   const itemname = req.body.itemname;
   const price = req.body.price;
   const discount = req.body.discount;
   const category = req.body.category;
   const description = req.body.description;
   const image = req.body.image;
+  const uId = req.body.uId;
 
   console.log(req.body);
 
@@ -21,6 +24,7 @@ productRoutes.route('/add').post(upload.single('image'), (req, res) => {
     category,
     description,
     image,
+    uId,
   });
   if (req.file) {
     product.image = req.file.path;
@@ -37,8 +41,8 @@ productRoutes.route('/add').post(upload.single('image'), (req, res) => {
 });
 
 //get
-productRoutes.route('/').get(function (req, res) {
-  Product.find(function (err, product) {
+router.get('/:id', checkAuth, function (req, res) {
+  Product.find({ uId: req.params.id }, function (err, product) {
     if (err) console.log(err);
     else {
       res.json(product);
@@ -47,15 +51,15 @@ productRoutes.route('/').get(function (req, res) {
 });
 
 //delete
-productRoutes.route('/delete/:id').post(function (req, res) {
+router.post('/delete/:id', function (req, res) {
   Product.deleteOne({ _id: req.params.id }, function (err, product) {
     if (err) res.json(err);
     else res.json('successfully removed');
   });
 });
-//edit
 
-productRoutes.route('/edit/:id').get(function (req, res) {
+//edit
+router.get('/edit/:id', checkAuth, function (req, res) {
   let id = req.params.id;
   Product.findById(id, function (err, product) {
     res.json(product);
@@ -63,8 +67,7 @@ productRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //update
-
-productRoutes.route('/update/:id').post(function (req, res) {
+router.post('/update/:id', checkAuth, function (req, res) {
   Product.findById(req.params.id, function (err, product) {
     if (!product) res.status(404).send('data is not found');
     else {
@@ -73,6 +76,7 @@ productRoutes.route('/update/:id').post(function (req, res) {
       product.discount = req.body.discount;
       product.category = req.body.category;
       product.description = req.body.description;
+      product.uId = req.body.uId;
       product
         .save()
         .then((product) => {
@@ -85,4 +89,4 @@ productRoutes.route('/update/:id').post(function (req, res) {
   });
 });
 
-module.exports = productRoutes;
+module.exports = router;
