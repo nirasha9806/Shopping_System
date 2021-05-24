@@ -2,7 +2,7 @@ const { Router, response } = require('express');
 
 const express = require('express');
 const router = express.Router();
-const { Payment } = require('../../models/payment-model');
+const { Payment } = require('../../models/Payment');
 const checkAuth = require('../middleware/check-auth');
 
 //post method to save data
